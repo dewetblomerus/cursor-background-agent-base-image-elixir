@@ -52,3 +52,15 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           platforms: linux/amd64,linux/arm64
+
+      - name: Make package public
+        run: |
+          # Wait a moment for the package to be fully published
+          sleep 10
+          
+          # Make the package public using GitHub API
+          curl -X PATCH \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/user/packages/container/cursor-elixir-dev-base" \
+            -d '{"visibility":"public"}' || echo "Package might already be public or API call failed"
