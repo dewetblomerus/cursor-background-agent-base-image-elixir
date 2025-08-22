@@ -1,6 +1,6 @@
 # Cursor Background Agent Setup
 
-This project provides a Docker-based setup environment for Cursor background agents with Elixir/Phoenix development tools.
+A Docker-based development environment for Cursor background agents with Elixir/Phoenix development tools. This dramatically reduces Cursor background agent startup times by providing a pre-built base image with all heavy installations.
 
 ## Automated Docker Image Building
 
@@ -9,22 +9,10 @@ The repository is configured with GitHub Actions to automatically build and publ
 ### How it works:
 
 1. **Trigger**: Every push to `main` branch automatically triggers the build
-2. **Build**: GitHub Actions builds the Docker image using `Dockerfile.base`
+2. **Build**: GitHub Actions builds the Docker image using the `Dockerfile`
 3. **Publish**: The image is published to `ghcr.io/dewetblomerus/cursor-elixir-dev-base:latest`
 4. **Multi-platform**: Builds for both `linux/amd64` and `linux/arm64` architectures
 5. **Caching**: Uses GitHub Actions cache to speed up subsequent builds
-
-### Manual Building
-
-You can still build and push manually using the provided scripts:
-
-```bash
-# Build locally
-./build-base-image.sh
-
-# Setup GitHub registry (one-time setup)
-./setup-github-registry.sh
-```
 
 ## Using the Image
 
@@ -42,13 +30,16 @@ WORKDIR /workspace
 CMD ["/bin/bash"]
 ```
 
-## Files
+## What's Included
 
-- `Dockerfile.base` - The main Docker image definition with Elixir/Phoenix tools
-- `build-base-image.sh` - Manual build script
-- `setup-github-registry.sh` - GitHub registry setup script
-- `.github/workflows/build-and-publish.yml` - Automated build workflow
-- `README-docker-setup.md` - Detailed Docker setup documentation
+The base image contains:
+
+- Latest Ubuntu LTS
+- Elixir and Erlang/OTP
+- Phoenix framework
+- Node.js and npm (for Phoenix assets)
+- Git and essential development tools
+- System dependencies for common Elixir libraries
 
 ## Benefits
 
@@ -56,3 +47,9 @@ CMD ["/bin/bash"]
 - **Automatic updates**: Image rebuilds automatically on every code change
 - **Multi-platform**: Works on both Intel and ARM64 machines
 - **Consistent environment**: Same base image across all development environments
+- **Reduced bandwidth**: Only downloads lightweight project-specific layers during agent startup
+
+## Repository Structure
+
+- `Dockerfile` - The Docker image definition with Elixir/Phoenix tools
+- `.github/workflows/build-and-publish.yml` - Automated build and publish workflow
