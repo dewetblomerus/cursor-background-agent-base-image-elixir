@@ -2,7 +2,7 @@
 # Script to build and push the base Docker image for Elixir/Phoenix Cursor Development
 
 # Configuration - Update these values for your registry
-REGISTRY="ghcr.io/dewetblomerus"  # GitHub Container Registry (change yourusername)
+REGISTRY="ghcr.io/dewetblomerus"  # GitHub Container Registry - matches GitHub Actions workflow
 IMAGE_NAME="cursor-elixir-dev-base"
 TAG="latest"
 
