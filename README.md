@@ -53,3 +53,4 @@ The base image contains:
 
 - `Dockerfile` - The Docker image definition with Elixir/Phoenix tools
 - `.github/workflows/build-and-publish.yml` - Automated build and publish workflow
+

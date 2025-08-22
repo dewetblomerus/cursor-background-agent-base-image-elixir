@@ -57,7 +57,7 @@ jobs:
         run: |
           # Wait a moment for the package to be fully published
           sleep 10
-          
+
           # Make the package public using GitHub API
           curl -X PATCH \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
